@@ -24,14 +24,15 @@ function decodeURIData(encodedString, prefixLength = 5) {
 async function getLootData(lootUrl) {
     console.log(`[BROWSER] Launching browser...`);
     const browser = await puppeteer.launch({
-        headless: "new",
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-blink-features=AutomationControlled',
-            '--disable-infobars'
-        ]
-    });
+    headless: "new",
+    args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-blink-features=AutomationControlled',
+        '--disable-infobars'
+    ],
+    executablePath: undefined // <-- forces Puppeteer to use its own Chromium
+});
 
     const page = await browser.newPage();
     let lootParams = null;
